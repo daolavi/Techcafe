@@ -1,0 +1,11 @@
+{
+  "name": "techcafe-app",
+  "version": "0.0.6",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}
