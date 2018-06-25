@@ -71,14 +71,14 @@ namespace TechCafe.Bot.WC2018
         public List<Match> GetNextMatches()
         {
             var data = GetLatestData(out matches, out teams, out stadiums);
-            var result = matches.OrderBy(m => m.Date).Where(m => m.Date >= DateTime.Now).Take(3).Select(m => m.Fetch(teams,stadiums)).ToList();
+            var result = matches.OrderBy(m => m.Date).Where(m => m.Date >= DateTime.Now).Take(4).Select(m => m.Fetch(teams,stadiums)).ToList();
             return result;
         }
 
         public List<Match> GetScores()
         {
             var data = GetLatestData(out matches, out teams, out stadiums);
-            var result = matches.OrderByDescending(m => m.Date).Where(m => m.HomeResult.HasValue && m.AwayResult.HasValue).Take(3).Select(m => m.Fetch(teams, stadiums)).ToList();
+            var result = matches.OrderByDescending(m => m.Date).Where(m => m.HomeResult.HasValue && m.AwayResult.HasValue).Take(4).Select(m => m.Fetch(teams, stadiums)).ToList();
             return result;
         }
     }
