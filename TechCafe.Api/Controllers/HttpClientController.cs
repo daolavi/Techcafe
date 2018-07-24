@@ -9,17 +9,17 @@ namespace TechCafe.Api.Controllers
     [Route("api/[controller]")]
     public class HttpClientController : Controller
     {
-        //private readonly IHttpClientFactory clientFactory;
+        private readonly IHttpClientFactory clientFactory;
 
         private readonly ILogger logger;
 
-        public HttpClientController(/*IHttpClientFactory clientFactory,*/ ILogger<HttpClientController> logger)
+        public HttpClientController(IHttpClientFactory clientFactory, ILogger<HttpClientController> logger)
         {
-            //this.clientFactory = clientFactory;
+            this.clientFactory = clientFactory;
             this.logger = logger;
         }
 
-        /*
+
         [HttpGet]
         [Route("servermbstatus")]
         public async Task<object> ServerMBStatus()
@@ -33,6 +33,6 @@ namespace TechCafe.Api.Controllers
 
             return await response.Content.ReadAsAsync<object>();
         }
-        */
+
     }
 }

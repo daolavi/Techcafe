@@ -76,8 +76,8 @@ namespace TechCafe.Api
             // Transient lifetime services are created each time they're requested
             services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
 
-            // Httpclient is shipped through dotnet core 2.1, wait AWS Lambda supports dotnet core 2.1
-            //services.AddHttpClient();
+            // Httpclient is shipped through dotnet core 2.1
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -99,7 +99,8 @@ namespace TechCafe.Api
 
             app.UseMvc();
 
-            InitializeDb(app, env);
+            // Initialize Database if needed
+            //InitializeDb(app, env);
         }
     }
 }
