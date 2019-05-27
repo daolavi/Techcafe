@@ -35,7 +35,7 @@ namespace TechCafe.Bot
             }
             else
             {
-                var text = message.Text.Replace("@TechcafeBot", string.Empty).Trim();
+                var text = message.Text.Replace("TechcafeBot", string.Empty).Trim();
                 if (text.ToLower().StartsWith("wc") && text.ToLower().Contains("nextmatch"))
                 {
                     var matches = WC2018LookupService.Instance.GetNextMatches();
@@ -63,7 +63,7 @@ namespace TechCafe.Bot
                     }
                     else
                     {
-                        await context.PostAsync($":)");
+                        await context.PostAsync($"{message.Text} - :)");
                     }
                 }
 

@@ -19,6 +19,9 @@ namespace TechCafe.Bot
         [ResponseType(typeof(void))]
         public virtual async Task<HttpResponseMessage> Post([FromBody] Activity activity)
         {
+            await Conversation.SendAsync(activity, () => new EchoDialog());
+            return new HttpResponseMessage(System.Net.HttpStatusCode.Accepted);
+            /*
             // check if activity is of type message
             if (activity != null && activity.GetActivityType() == ActivityTypes.Message)
             {
@@ -29,6 +32,7 @@ namespace TechCafe.Bot
                 HandleSystemMessage(activity);
             }
             return new HttpResponseMessage(System.Net.HttpStatusCode.Accepted);
+            */
         }
 
         private Activity HandleSystemMessage(Activity message)
