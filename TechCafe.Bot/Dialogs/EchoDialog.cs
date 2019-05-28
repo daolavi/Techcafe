@@ -7,6 +7,7 @@ using TechCafe.Bot.CryptoTracker;
 using TechCafe.Bot.WC2018;
 using System.Linq;
 using TechCafe.Bot.WC2018.Extension;
+using System.Text;
 
 namespace TechCafe.Bot
 {
@@ -50,9 +51,10 @@ namespace TechCafe.Bot
                     var result = string.Join("\n\n", matchesString);
                     await context.PostAsync(result);
                 }
-                else
+                else if (text.ToLower().StartsWith("coin"))
                 {
-                    var coinInfo = CoinLookupService.Instance.Lookup(text);
+                    var coin = text.Split(' ')[1];
+                    var coinInfo = CoinLookupService.Instance.Lookup(coin);
                     if (coinInfo != null)
                     {
                         var data = CoinMarketCapService.Instance.GetCurrencyInfo(coinInfo.Id).Data;
@@ -65,6 +67,23 @@ namespace TechCafe.Bot
                     {
                         await context.PostAsync($"{message.Text} - :)");
                     }
+                }
+                else if (text.ToLower().StartsWith("summon"))
+                {
+                    var name = text.Split(' ')[1];
+                    if (name == "Bu")
+                    {
+                        var result = "@daolavi @Dao @Bu @Burin";
+                        await context.PostAsync(result);
+                    }
+                }
+                else
+                {
+                    var stringBuilder = new StringBuilder();
+                    stringBuilder.AppendLine("coin <code>           : coin price inquiry");
+                    stringBuilder.AppendLine("summon <Bu>           : coin price inquiry");
+                    var result = stringBuilder.ToString();
+                    await context.PostAsync(result);
                 }
 
                 context.Wait(MessageReceivedAsync);
